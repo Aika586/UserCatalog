@@ -1,22 +1,34 @@
 import Button from "../button/Button";
-import styles from "./HeaderBlock.module.css"
+import styles from "./HeaderBlock.module.css";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
-  className: string;
   h1: string;
   title: string;
-  isUserPage ?: boolean;
-  imgSrc ?:string
+  isUserPage?: boolean;
+  imgSrc?: string;
 };
-const HeaderBlock = ({ className, h1, title, isUserPage,imgSrc }: Props) => {
+const HeaderBlock = ({ h1, title, isUserPage, imgSrc }: Props) => {
+  const navigate=useNavigate()
+  const handleGoBack=()=>{
+    navigate(-1)
+  }
   return (
     <div className={styles.wrapper}>
-      <div className={styles[className]}>
-        {isUserPage && <Button className="buttonGoBack">Назад</Button>}
-        <Button className={styles.button_exit}> Выход</Button>
-        {isUserPage && <img src={imgSrc} alt={title} />}
-        <h1 className={styles.h1}>{h1}</h1>
-        <p className={styles.title}>{title}</p>
+      <div
+        className={`${styles.headerHome} ${isUserPage ? styles.user_page : ""}`}
+      >
+        {isUserPage && <Button className={styles.button_goBack} onClick={handleGoBack}>Назад</Button>}
+        <Button className={styles.button_logout}> Выход</Button>
+        {isUserPage && (
+          <img src={imgSrc} alt={title} className={styles.userImg} />
+        )}
+        <div className="text_container">
+          <h1 className={styles.h1}>{h1}</h1>
+          <p className={isUserPage ? styles.userTitle : styles.title}>
+            {title}
+          </p>
+        </div>
       </div>
     </div>
   );

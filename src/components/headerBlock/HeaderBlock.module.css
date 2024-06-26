@@ -1,33 +1,52 @@
-.wrapper{
+.wrapper {
   background-color: var(--color--violet);
-  color:white;
-  padding-block:44px;
- 
+  color: white;
+  padding-block: 44px;
 }
-.headerHome{
+.headerHome {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
-  padding-block:20px;
-
-}
-
-.title{
-  max-width:848px;
+  /* position: relative; */
+  padding-block: 20px;
   text-align: center;
-  font-size:20px;
 }
-.h1{
-   font-size: 64px;
-  font-weight:400;
 
- }
+.user_page {
+  flex-direction: row;
+  gap: 32px;
+  text-align: left;
+}
 
- .button_exit{
-  position:absolute;
-  top:0;
+.userImg {
+  border-radius: 50%;
+  width: 187px;
+  height: 187px;
+}
+
+.userTitle {
+  font-size: 32px;
+}
+
+.title {
+  max-width: 848px;
+  font-size: 20px;
+}
+.h1 {
+  font-size: 64px;
+  font-weight: 400;
+}
+
+.button_logout {
   right:80px;
+}
 
- }
+.button_goBack{
+  left:80px;
+}
+
+.button_logout,
+.button_goBack {
+  position: absolute;
+  top:32px;
+}

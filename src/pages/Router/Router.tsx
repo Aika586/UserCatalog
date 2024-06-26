@@ -10,7 +10,7 @@ const Router = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element:<SignUp /> 
+      element:isAuthenticated ? <HomePage /> : <SignUp />
     },
     { path: "login", element: <LoginPage /> },
     { path: "signup", element: <SignUp /> },

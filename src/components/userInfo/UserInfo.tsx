@@ -12,7 +12,7 @@ const UserInfo = () => {
     <>
       {data && (
         <HeaderBlock
-          className="user_page"
+          
           h1={`${userData?.first_name} ${userData?.last_name}`}
           title="Партнер"
           isUserPage
