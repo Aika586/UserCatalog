@@ -4,6 +4,7 @@ import { useAppDispatch } from "../../app/hooks";
 import { useRegisterUserMutation } from "../../services/users";
 import { setToken } from "../../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
+import styles from "./SignUp.module.css";
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
@@ -14,36 +15,51 @@ const SignUpForm = () => {
   });
 
   const [error, setError] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [registerUser] = useRegisterUserMutation();
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const validateEmail = () => {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@reqres\.in$/;
+    if (!formData.email) {
+      setEmailError("Требуется электронная почта");
+      return false;
+    } else if (!emailPattern.test(formData.email)) {
+      setEmailError("Неверный формат электронной почты");
+      return false;
+    } else {
+      setEmailError("");
+      return true;
+    }
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const navigate=useNavigate()
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validateEmail()) {
+      return;
+    }
     if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match");
+      setError("Пароли не совпадают");
       return;
     }
     try {
-      const { name, email, password} = formData; // Extract email and password from formData
+      const { name, email, password } = formData;
       const response = await registerUser({ email, password }).unwrap();
       dispatch(setToken(response.token));
-      localStorage.setItem('name', name);
-      navigate('/users')
-
-
+      localStorage.setItem("name", name);
+      navigate("/users");
     } catch (err) {
-      setError("Sign up failed");
+      setError("Регистрация не удалась");
     }
   };
 
   return (
-    <div>
-      <h2>Регистрация</h2> {/* This is the title */}
-      <form onSubmit={handleSubmit}>
+    <div className={styles.form_wrapper}>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <p className={styles.title}>Регистрация</p> {/* This is the title */}
         <Input
           label="Имя"
           type="text"
@@ -57,16 +73,16 @@ const SignUpForm = () => {
           value={formData.email}
           onChange={handleChange}
           id="email"
-         
-        />{" "}
-        {/* Use the new InputField component */}
+          error={!!emailError}
+        />
+        {emailError && <p className={styles.error}>{emailError}</p>}
         <Input
           label="Пароль"
           type="password"
           value={formData.password}
           onChange={handleChange}
           id="password"
-      
+          error={!!error}
         />
         <Input
           label="Подтвердите пароль"
@@ -74,9 +90,14 @@ const SignUpForm = () => {
           value={formData.confirmPassword}
           onChange={handleChange}
           id="confirmPassword"
+          error={!!error}
         />
-        {error && <p>{error}</p>}
-        <button type="submit">Зарегистрироваться</button>
+        {error && <p className={styles.error}>{error}</p>}
+        <div className={styles.button_container}>
+          <button type="submit" className={styles.button}>
+            Зарегистрироваться
+          </button>
+        </div>
       </form>
     </div>
   );

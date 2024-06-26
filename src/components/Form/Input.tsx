@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import styles from "./SignUp.module.css"
 
 
 interface InputFieldProps {
@@ -9,6 +10,7 @@ interface InputFieldProps {
   value: string;
   onChange: (value: React.ChangeEvent<HTMLInputElement>) => void;
   id: string;
+  error?: boolean;
 
 }
 
@@ -18,6 +20,7 @@ const Input: React.FC<InputFieldProps> = ({
   value,
   onChange,
   id,
+  error=false
  
 }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -26,31 +29,26 @@ const Input: React.FC<InputFieldProps> = ({
   };
 
   return (
-    <div style={{ position: "relative" }}>
-      <label htmlFor={id}>{label}</label>
+    <div className={styles.input_container}>
+      <label htmlFor={id} className={styles.label}>{label}</label>
+      <div className={styles.input_wrapper}>
       <input
         type={type === "password" && isPasswordVisible ? "text" : type}
         value={value}
-        onChange={onChange}
+        onChange={onChange}  
         style={isPasswordVisible ? {} : { fontFamily: "monospace" }}
-        name={id}
+        name={id}              
         id={id}
-        required={id !== "name"}
-      />
+       className={`${styles.input} ${error ? styles.errorInput : ""}`}/>
       {type === "password" && (
         <span
           onClick={handleToggleVisibility}
-          style={{
-            position: "absolute",
-            right: "10px",
-            top: "50%",
-            transform: "translateY(-50%)",
-            cursor: "pointer",
-          }}
+          className={styles.eyeIcon}
         >
         <FontAwesomeIcon icon={isPasswordVisible ? faEye : faEyeSlash} />
         </span>
       )}
+      </div>
     </div>
   );
 };
