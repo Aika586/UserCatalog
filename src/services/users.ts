@@ -18,7 +18,6 @@ type UsersResponse<T> = {
 
 type UserResponse<T> = {
   data: T;
-  support: { url: string; text: string };
 };
 
 type FormUser={

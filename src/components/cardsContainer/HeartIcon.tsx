@@ -1,8 +1,8 @@
-type Props = {
+type HeartIconProps = {
   className: string;
 };
 
-const HeartIcon = ({ className }: Props) => {
+const HeartIcon = ({ className }: HeartIconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
