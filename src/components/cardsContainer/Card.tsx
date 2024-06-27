@@ -1,4 +1,4 @@
-import HeartIcon from "./HeartIcon.jsx"
+import HeartIcon from "./HeartIcon.tsx"
 import styles from "./CardsContainer.module.css"
 import { Link } from "react-router-dom";
 type Props = {

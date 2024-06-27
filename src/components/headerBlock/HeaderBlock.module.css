@@ -1,19 +1,18 @@
 .wrapper {
   background-color: var(--color--violet);
   color: white;
-  padding-block: 44px;
+  height: 265px;
 }
 .headerHome {
   display: flex;
-  justify-content: center;
   align-items: center;
-  /* position: relative; */
+  justify-content: center;
   padding-block: 20px;
   text-align: center;
+  padding-block: 44px;
 }
 
 .user_page {
-  flex-direction: row;
   gap: 32px;
   text-align: left;
 }
@@ -28,6 +27,15 @@
   font-size: 32px;
 }
 
+.img_container {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+}
+.text_container {
+  flex: 2;
+}
+
 .title {
   max-width: 848px;
   font-size: 20px;
@@ -35,18 +43,19 @@
 .h1 {
   font-size: 64px;
   font-weight: 400;
+  padding-bottom:16px;
 }
 
 .button_logout {
-  right:80px;
+  right: 80px;
 }
 
-.button_goBack{
-  left:80px;
+.button_goBack {
+  left: 80px;
 }
 
 .button_logout,
 .button_goBack {
   position: absolute;
-  top:32px;
+  top: 32px;
 }

@@ -1,0 +1,16 @@
+.userInfo_container {
+  display: flex;
+  justify-content: center;
+  padding: 49px;
+  gap: 129px;
+}
+
+.contacts {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.text {
+  max-width: 630px;
+}

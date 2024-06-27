@@ -24,8 +24,9 @@ const DisplayCards = () => {
         <button
           onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
           disabled={page === 1}
+          className={styles.pag_button}
         >
-          1
+          Предыдущий
         </button>
         <button
           onClick={() =>
@@ -34,8 +35,9 @@ const DisplayCards = () => {
             )
           }
           disabled={data && page >= data.total_pages}
+          className={styles.pag_button}
         >
-          2
+          Cледующий
         </button>
       </div>
     </div>
