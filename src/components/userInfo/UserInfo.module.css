@@ -1,16 +1,34 @@
 .userInfo_container {
   display: flex;
-  justify-content: center;
+  justify-content:center;
   padding: 49px;
-  gap: 129px;
+  gap:100px;
 }
 
 .contacts {
   display: flex;
   align-items: center;
   gap: 8px;
+  padding-bottom:24px;
+
 }
 
 .text {
   max-width: 630px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 800px) {
+  .userInfo_container{
+    gap:30px;
+  }
+}
+@media (max-width: 700px) {
+  .userInfo_container{
+   flex-direction: column-reverse;
+  }
+
+  
 }

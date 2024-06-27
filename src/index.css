@@ -16,3 +16,10 @@
   text-decoration: none;
   color:inherit;
  }
+ ul {
+   list-style-type: none;
+ }
+ 
+ li{
+  padding-bottom:15px;
+ }
