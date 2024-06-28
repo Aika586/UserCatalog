@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useAppDispatch } from "../../app/hooks";
 import { useRegisterUserMutation } from "../../services/users";
 import { setToken } from "../../features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
 import styles from "./SignUp.module.css";
 
 const SignUpForm = () => {
@@ -16,6 +17,7 @@ const SignUpForm = () => {
   const [error, setError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [registerUser] = useRegisterUserMutation();
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const validateEmail = () => {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@reqres\.in$/;
@@ -48,6 +50,7 @@ const SignUpForm = () => {
       const response = await registerUser({ email, password }).unwrap();
       dispatch(setToken(response.token));
       localStorage.setItem("name", name);
+      navigate("/users");
     } catch (err) {
       setError("Регистрация не удалась");
     }
